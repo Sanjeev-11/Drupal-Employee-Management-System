@@ -1,0 +1,40 @@
+{{ attach_library('employee/employee-style') }}
+<table>
+  <thead>
+    <tr>
+      <th>Emp ID</th>
+      <th>Name</th>
+      <th>Salary</th>
+      <th>Hike</th>
+    </tr>
+  </thead>
+  <tbody id="employee-table-body">
+    {% for employee in details %}
+    <tr>
+      <td>{{ employee.EmpID }}</td>
+      <td>{{ employee.EmpName }}</td>
+      <td>{{ employee.EmpSalary }}</td>
+      <td>
+        <input
+          type="checkbox"
+          class="employee-checkbox"
+          name="employee_ids[]"
+          value="{{ employee.EmpID }}"
+          onchange="toggleHikePercentage(this)"
+        />
+        <div class="hike-percentage-container" style="display: none;">
+          <input
+            type="text"
+            class="hike-percentage-field"
+            name="hike_percentage[]"
+            placeholder="Enter hike percentage"
+            onchange="updateSalary(this, {{ employee.EmpSalary }})"
+          />
+        </div>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+

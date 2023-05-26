@@ -1,0 +1,36 @@
+<?php
+
+/**
+ * @file
+ * Provides custom functionality for the Employee module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function employee_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.employee':
+      return '<h3>' . t('About') . '</h3>' . '<p>' . t('Provides employee management functionality.') . '</p>';
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function employee_theme($existing, $type, $theme, $path) {
+  return [
+    'employeelist' => [
+      'variables' => [
+        'title' => NULL,
+        'details' => NULL,
+        'form' => NULL,
+      ],
+      'template' => 'employeelist',
+    ],
+  ];
+}
